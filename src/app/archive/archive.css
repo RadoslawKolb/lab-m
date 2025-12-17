@@ -1,44 +1,54 @@
 .container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 0 10px;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
 }
 
-.tasks .task {
-  background-color: white;
-  border: 1px solid black;
-  margin-bottom: 10px;
-  padding: 10px;
-
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas: 'deadline actions' 'title title';
-  grid-row-gap: 10px;
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 28px;
+  font-weight: 600;
+  color: #444;
 }
 
-@media screen and (min-width: 768px) {
-  .tasks .task {
-    grid-template-columns: 3fr 1fr auto;
-    grid-template-areas: 'title deadline actions';
-  }
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.tasks .task .title {
-  grid-area: title;
+
+.task {
+  background: #ffffff;
+  padding: 15px 18px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.tasks .task .deadline {
-  grid-area: deadline;
+.task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
-.tasks .task .deadline span {
-  padding: 5px;
-  background-color: orange;
-  border-radius: 8px;
-  font-size: 0.8em;
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
 }
 
-.tasks .task .actions {
-  grid-area: actions;
-  text-align: right;
+
+.deadline span {
+  font-size: 14px;
+  color: #777;
 }
+
+
+

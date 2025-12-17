@@ -5,6 +5,5 @@ import {Archive} from './archive/archive';
 export const routes: Routes = [
   {path: 'tasks', component: Tasks},
   {path: 'archive', component: Archive},
-  {path: '', redirectTo: '/tasks', pathMatch: 'full'},
+  {path: '' , redirectTo: '/tasks' , pathMatch: 'full'},
 ];
-

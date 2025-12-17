@@ -2,17 +2,19 @@
   <h2>Archive</h2>
   <div class="tasks">
     @for (task of tasks; track task.id) {
-      <div class="task">
-        <div class="title">{{ task.title }}</div>
-        <div class="deadline">
+      <mat-card [class.completed]="task.completed">
+        <mat-card-header>
           @if (task.deadline) {
-            <span>{{ task.deadline }}</span>
+            <mat-card-subtitle >{{ task.deadline | date: 'yyyy-MM-dd' }}</mat-card-subtitle>
           }
-        </div>
-        <div class="actions">
-          <button (click)="delete(task)">Delete</button>
-        </div>
-      </div>
+          <mat-card-title>{{ task.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <button mat-icon-button color="primary" (click)="delete(task)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
     }
   </div>
 </div>

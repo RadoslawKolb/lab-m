@@ -1,15 +1,16 @@
 <div class="container">
   <form class="new-task">
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input type="text" id="title" name="title" [(ngModel)]="newTask.title" class="form-control" [disabled]="isProcessing" />
-    </div>
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput type="text" [(ngModel)]="newTask.title" name="title" [disabled]="isProcessing" />
+      <mat-hint>Enter at least 1 character.</mat-hint>
+    </mat-form-field>
     <div class="form-group">
       <label for="deadline">Deadline</label>
       <input type="date" id="deadline" name="title" [(ngModel)]="newTask.deadline" class="form-control" [disabled]="isProcessing" />
     </div>
     <div class="form-group">
-      <button type="button" class="btn btn-primary" (click)="addTask()" [disabled]="isProcessing">
+      <button matButton="outlined" class="btn btn-primary" (click)="addTask()" [disabled]="!canAddTask()">
         {{isProcessing ? 'Processing...' : 'Add Task'}}
       </button>
     </div>
@@ -18,19 +19,20 @@
 
   <div class="tasks">
     @for ( task of tasks; track task.id) {
-      <div class="task" [class.completed]="task.completed">
-        <div class="title">{{ task.title }}</div>
-        <div class="deadline">
+      <mat-card [class.completed]="task.completed">
+        <mat-card-header>
           @if (task.deadline) {
-            <span>{{ task.deadline }}</span>
+            <mat-card-subtitle>{{ task.deadline | date: 'yyyy-MM-dd' }}</mat-card-subtitle>
           }
-        </div>
-        <div class="actions">
-          <input type="checkbox" [(ngModel)]="task.completed" (change)="handleChange(task)" />
-        </div>
-      </div>
+          <mat-card-title>{{ task.title }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions align="end">
+          <mat-checkbox color="primary" [(ngModel)]="task.completed" (change)="handleChange(task)">Done</mat-checkbox>
+        </mat-card-actions>
+      </mat-card>
     }
   </div>
 
-  <button (click)="archiveCompleted()">Archive Completed</button>
+  <button matButton="outlined" (click)="archiveCompleted()"
+  [disabled]="!canArchiveCompleted()">Archive Completed</button>
 </div>

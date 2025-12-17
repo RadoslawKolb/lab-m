@@ -1,18 +1,18 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Task} from './task';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Task } from './task';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Tasks {
-  readonly baseUrl = 'http://localhost:12346';
+
+  private baseUrl = 'http://localhost:43914';
 
   constructor(
     private http: HttpClient,
-  ) {
-  }
+  ) {}
 
   public index(archived = false): Observable<Task[]> {
     const url = this.baseUrl + '/todos';
